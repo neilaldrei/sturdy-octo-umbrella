@@ -6,7 +6,7 @@ import DropContainer from './components/droppable/DropContainer.vue';
 import DraggableItem from './components/draggable/DraggableItem.vue';
 import BaseError from './components/ui/BaseError.vue';
 
-const sortable = useSortableStore()
+const sortable = useSortableStore();
 
 const onDragStartHandler = (...params) => {
     const [e, item] = params;

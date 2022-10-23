@@ -54,38 +54,39 @@ export const useSortableStore = defineStore('sortable', {
 
     getters: {
         commonItems() {
-            return this.items.filter((item) => item.list == 'common item')
+            return this.items.filter((item) => item.list == 'common item');
         },
         
         fruits() {
-            return this.items.filter((item) => item.list == 'fruit')
+            return this.items.filter((item) => item.list == 'fruit');
         },
         
         vegetables() {
-            return this.items.filter((item) => item.list === 'vegetable')
+            return this.items.filter((item) => item.list === 'vegetable');
         },
     },
 
     actions: {
         addItem(text) {
             // you can directly mutate the state
-            this.items.push({ text, id: this.nextId++ })
+            this.items.push({ text, id: this.nextId++ });
         },
 
         dragStart(evt, item) {
-            evt.dataTransfer.dropEffect = 'move'
-            evt.dataTransfer.effectAllowed = 'move'
-            evt.dataTransfer.setData('itemID', item.id)
+            evt.dataTransfer.dropEffect = 'move';
+            evt.dataTransfer.effectAllowed = 'move';
+            evt.dataTransfer.setData('itemID', item.id);
         },
 
         onDrop(evt, list) {
-            const itemID = evt.dataTransfer.getData('itemID')
-            const item = this.items.find((item) => item.id === parseInt(itemID))
+            const itemID = evt.dataTransfer.getData('itemID');
+            const item = this.items.find((item) => item.id === parseInt(itemID));
+            
             if (item.type === list) {
-                item.list = list
-                this.hasError = false
+                item.list = list;
+                this.hasError = false;
             } else {
-                this.hasError = true
+                this.hasError = true;
             }
         },
     },

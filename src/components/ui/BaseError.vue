@@ -8,5 +8,5 @@
 const props = defineProps({
     hasError: Boolean,
     message: String
-})
+});
 </script>
