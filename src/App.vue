@@ -8,9 +8,9 @@ import DraggableItem from './components/draggable/DraggableItem.vue';
 const sortable = useSortableStore()
 
 const onDragStartHandler = (...params) => {
-    const [e, list] = params;
+    const [e, item] = params;
 
-    sortable.dragStart(e, list);
+    sortable.dragStart(e, item);
 }
 
 const onDropHandler = (...params) => {
@@ -24,16 +24,23 @@ const onDropHandler = (...params) => {
 <template>
     <base-board>
         <div class="row">
-            <drop-container list="1" @on-drop="onDropHandler">
+            <drop-container list="common items" @on-drop="onDropHandler">
                 <draggable-item 
-                    :items="sortable.listOne" 
+                    :items="sortable.commonItems" 
                     @on-drag-start="onDragStartHandler">
                 </draggable-item>
             </drop-container>
 
-            <drop-container list="2" @on-drop="onDropHandler">
+            <drop-container list="fruits" @on-drop="onDropHandler">
                 <draggable-item 
-                    :items="sortable.listTwo" 
+                    :items="sortable.fruits" 
+                    @on-drag-start="onDragStartHandler">
+                </draggable-item>
+            </drop-container>
+
+            <drop-container list="vegetables" @on-drop="onDropHandler">
+                <draggable-item 
+                    :items="sortable.vegetables" 
                     @on-drag-start="onDragStartHandler">
                 </draggable-item>
             </drop-container>

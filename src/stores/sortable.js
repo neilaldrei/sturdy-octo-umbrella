@@ -6,31 +6,55 @@ export const useSortableStore = defineStore('sortable', {
             nextId: 0,
             items: [
                 {
-                    id: 0,
-                    title: 'Item A',
-                    list: 1,
-                },
-                {
                     id: 1,
-                    title: 'Item B',
-                    list: 1,
+                    name: "Eggplant",
+                    type: "common items"
                 },
                 {
                     id: 2,
-                    title: 'Item C',
-                    list: 2,
+                    name: "Mango",
+                    type: "common items"
+                },
+                {
+                    id: 3,
+                    name: "Apple",
+                    type: "common items"
+                },
+                {
+                    id: 4,
+                    name: "Strawberry",
+                    type: "common items"
+                },
+                {
+                    id: 5,
+                    name: "Cabbage",
+                    type: "common items"
+                },
+                {
+                    id: 6,
+                    name: "Carrots",
+                    type: "common items"
+                },
+                {
+                    id: 7,
+                    name: "Potato",
+                    type: "common items"
                 },
             ],
         }
     },
 
     getters: {
-        listOne() {
-            return this.items.filter((item) => item.list == 1)
+        commonItems() {
+            return this.items.filter((item) => item.type == 'common items')
         },
         
-        listTwo() {
-            return this.items.filter((item) => item.list == 2)
+        fruits() {
+            return this.items.filter((item) => item.type == 'fruits')
+        },
+        
+        vegetables() {
+            return this.items.filter((item) => item.type === 'vegetables')
         },
     },
 
@@ -48,8 +72,9 @@ export const useSortableStore = defineStore('sortable', {
 
         onDrop(evt, list) {
             const itemID = evt.dataTransfer.getData('itemID')
-            const item = this.items.find((item) => item.id == itemID)
-            item.list = list
+            const item = this.items.find((item) => item.id === parseInt(itemID))
+            console.log(item, itemID, list);
+            item.type = list
         },
     },
 });

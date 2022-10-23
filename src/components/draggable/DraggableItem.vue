@@ -1,7 +1,7 @@
 <template>
-    <div class="drag-el" v-for="item in props.items" :key="item.title" draggable="true"
+    <div class="drag-el" v-for="item in props.items" :key="item.id" draggable="true"
         @dragstart="onDragStart($event, item)">
-        {{ item.title }}
+        {{ item.name }}
     </div>
 </template>
 
