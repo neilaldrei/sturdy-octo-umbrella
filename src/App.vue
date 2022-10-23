@@ -1,31 +1,42 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
+import { useSortableStore } from './stores/sortable';
+
+import BaseBoard from './components/layout/BaseBoard.vue'
+import DropContainer from './components/droppable/DropContainer.vue';
+import DraggableItem from './components/draggable/DraggableItem.vue';
+
+const sortable = useSortableStore()
+
+const onDragStartHandler = (...params) => {
+    const [e, list] = params;
+
+    sortable.dragStart(e, list);
+}
+
+const onDropHandler = (...params) => {
+    const [e, list] = params;
+
+    sortable.onDrop(e, list);
+}
+
 </script>
-
+    
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
+    <base-board>
+        <div class="row">
+            <drop-container list="1" @on-drop="onDropHandler">
+                <draggable-item 
+                    :items="sortable.listOne" 
+                    @on-drag-start="onDragStartHandler">
+                </draggable-item>
+            </drop-container>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+            <drop-container list="2" @on-drop="onDropHandler">
+                <draggable-item 
+                    :items="sortable.listTwo" 
+                    @on-drag-start="onDragStartHandler">
+                </draggable-item>
+            </drop-container>
+        </div>
+    </base-board>
+</template>
