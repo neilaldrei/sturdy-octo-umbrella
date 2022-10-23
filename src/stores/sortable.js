@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useSortableStore = defineStore('sortable', {
     state: () => {
         return {
+            hasError: false,
             nextId: 0,
             items: [
                 {
@@ -82,6 +83,9 @@ export const useSortableStore = defineStore('sortable', {
             const item = this.items.find((item) => item.id === parseInt(itemID))
             if (item.type === list) {
                 item.list = list
+                this.hasError = false
+            } else {
+                this.hasError = true
             }
         },
     },

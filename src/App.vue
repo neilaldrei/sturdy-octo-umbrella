@@ -4,6 +4,7 @@ import { useSortableStore } from './stores/sortable';
 import BaseBoard from './components/layout/BaseBoard.vue'
 import DropContainer from './components/droppable/DropContainer.vue';
 import DraggableItem from './components/draggable/DraggableItem.vue';
+import BaseError from './components/ui/BaseError.vue';
 
 const sortable = useSortableStore()
 
@@ -45,5 +46,7 @@ const onDropHandler = (...params) => {
                 </draggable-item>
             </drop-container>
         </div>
+
+        <base-error :has-error="sortable.hasError" message="Sorry, you are adding item on incorrect list"></base-error>
     </base-board>
 </template>
