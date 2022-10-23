@@ -8,37 +8,44 @@ export const useSortableStore = defineStore('sortable', {
                 {
                     id: 1,
                     name: "Eggplant",
-                    type: "common items"
+                    type: "vegetable",
+                    list: 'common item'
                 },
                 {
                     id: 2,
                     name: "Mango",
-                    type: "common items"
+                    type: "fruit",
+                    list: 'common item'
                 },
                 {
                     id: 3,
                     name: "Apple",
-                    type: "common items"
+                    type: "fruit",
+                    list: 'common item'
                 },
                 {
                     id: 4,
                     name: "Strawberry",
-                    type: "common items"
+                    type: "fruit",
+                    list: 'common item'
                 },
                 {
                     id: 5,
                     name: "Cabbage",
-                    type: "common items"
+                    type: "vegetable",
+                    list: 'common item'
                 },
                 {
                     id: 6,
                     name: "Carrots",
-                    type: "common items"
+                    type: "vegetable",
+                    list: 'common item'
                 },
                 {
                     id: 7,
                     name: "Potato",
-                    type: "common items"
+                    type: "vegetable",
+                    list: 'common item'
                 },
             ],
         }
@@ -46,15 +53,15 @@ export const useSortableStore = defineStore('sortable', {
 
     getters: {
         commonItems() {
-            return this.items.filter((item) => item.type == 'common items')
+            return this.items.filter((item) => item.list == 'common item')
         },
         
         fruits() {
-            return this.items.filter((item) => item.type == 'fruits')
+            return this.items.filter((item) => item.list == 'fruit')
         },
         
         vegetables() {
-            return this.items.filter((item) => item.type === 'vegetables')
+            return this.items.filter((item) => item.list === 'vegetable')
         },
     },
 
@@ -73,8 +80,9 @@ export const useSortableStore = defineStore('sortable', {
         onDrop(evt, list) {
             const itemID = evt.dataTransfer.getData('itemID')
             const item = this.items.find((item) => item.id === parseInt(itemID))
-            console.log(item, itemID, list);
-            item.type = list
+            if (item.type === list) {
+                item.list = list
+            }
         },
     },
 });

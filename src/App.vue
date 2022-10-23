@@ -24,21 +24,21 @@ const onDropHandler = (...params) => {
 <template>
     <base-board>
         <div class="row">
-            <drop-container list="common items" @on-drop="onDropHandler">
+            <drop-container list="common item" @on-drop="onDropHandler">
                 <draggable-item 
                     :items="sortable.commonItems" 
                     @on-drag-start="onDragStartHandler">
                 </draggable-item>
             </drop-container>
 
-            <drop-container list="fruits" @on-drop="onDropHandler">
+            <drop-container list="fruit" @on-drop="onDropHandler">
                 <draggable-item 
                     :items="sortable.fruits" 
                     @on-drag-start="onDragStartHandler">
                 </draggable-item>
             </drop-container>
 
-            <drop-container list="vegetables" @on-drop="onDropHandler">
+            <drop-container list="vegetable" @on-drop="onDropHandler">
                 <draggable-item 
                     :items="sortable.vegetables" 
                     @on-drag-start="onDragStartHandler">
